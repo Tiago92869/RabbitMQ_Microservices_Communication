@@ -1,0 +1,21 @@
+server:
+  port: 2323
+  servlet:
+    contextPath: /api/appointment
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/appointmentDB
+    username: postgres
+    password: postgres
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enable: true
