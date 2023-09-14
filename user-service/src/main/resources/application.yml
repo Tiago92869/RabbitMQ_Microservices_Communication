@@ -1,0 +1,22 @@
+server:
+  port: 2324
+  servlet:
+    contextPath: /api/user
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/userDB
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enable: true
