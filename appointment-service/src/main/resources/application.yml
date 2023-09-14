@@ -8,6 +8,7 @@ spring:
     url: jdbc:postgresql://localhost:5430/appointmentDB
     username: postgres
     password: postgres
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
