@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 import java.io.UnsupportedEncodingException;
 
 @Service
-public class MyMessageReceiverService {
+public class ConsumerService {
 
     private final AppointmentService appointmentService;
 
     @Autowired
-    public MyMessageReceiverService(AppointmentService appointmentService) {
+    public ConsumerService(AppointmentService appointmentService) {
         this.appointmentService = appointmentService;
     }
 
-    @RabbitListener(queues = "appointment-service")
+    @RabbitListener(queues = "delete-appointment-user")
     public void receiveMessage(Message message) throws UnsupportedEncodingException {
 
         String messageType = (String) message.getMessageProperties().getHeaders().get("MessageType");
@@ -34,5 +34,31 @@ public class MyMessageReceiverService {
 
             System.out.println("Received message: " + message);
         }
+    }
+
+    @RabbitListener(queues = "appointment-service-hello")
+    public void test(Message message) throws UnsupportedEncodingException {
+
+        String userId = new String(message.getBody(), "UTF-8");
+
+        System.out.println("Received message: Hello " + userId);
+
+    }
+
+
+
+    @RabbitListener(queues = "queue1")
+    public void processQueue1(String mensagem) {
+        System.out.println("Recebida mensagem na fila 1: " + mensagem);
+    }
+
+    @RabbitListener(queues = "queue2")
+    public void processQueue2(String mensagem) {
+        System.out.println("Recebida mensagem na fila 2: " + mensagem);
+    }
+
+    @RabbitListener(queues = "queue3")
+    public void processQueue3(String mensagem) {
+        System.out.println("Recebida mensagem na fila 3: " + mensagem);
     }
 }
