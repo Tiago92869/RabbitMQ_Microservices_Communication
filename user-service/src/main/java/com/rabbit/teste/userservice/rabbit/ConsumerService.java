@@ -6,7 +6,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MessageReceiverService {
+public class ConsumerService {
 
     @RabbitListener(queues = "user-service")
     public void receiveMessage(@Payload Message message) {
