@@ -3,6 +3,7 @@ package com.rabbit.teste.userservice.service;
 import com.rabbit.teste.userservice.dto.UserDto;
 import com.rabbit.teste.userservice.entity.User;
 import com.rabbit.teste.userservice.mapper.UserMapper;
+import com.rabbit.teste.userservice.rabbit.MessageSenderService;
 import com.rabbit.teste.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,14 +17,18 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    private final MessageSenderService messageSenderService;
+
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, MessageSenderService messageSenderService) {
         this.userRepository = userRepository;
+        this.messageSenderService = messageSenderService;
     }
 
 
     public Page<UserDto> findAllUsers(Pageable pageable) {
-
+        messageSenderService.sendMessage("ss");
         return this.userRepository.findAll(pageable).map(UserMapper.INSTANCE::userToDto);
     }
 

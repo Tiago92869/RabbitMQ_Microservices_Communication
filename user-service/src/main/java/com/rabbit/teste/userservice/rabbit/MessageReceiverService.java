@@ -4,9 +4,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MyMessageReceiverService {
+public class MessageReceiverService {
 
-    @RabbitListener(queues = "my-queue")
+    @RabbitListener(queues = "user-service")
     public void receiveMessage(String message) {
         // Process the received message
         System.out.println("Received message: " + message);
