@@ -16,7 +16,6 @@ public class UserDto {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID id;
-    private String description;
-    private UUID userId;
-    private Boolean done;
+    private String username;
+    private Boolean isEnable;
 }
