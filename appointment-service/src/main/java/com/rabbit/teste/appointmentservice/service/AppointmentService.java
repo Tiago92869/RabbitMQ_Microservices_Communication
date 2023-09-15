@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,5 +35,17 @@ public class AppointmentService {
         Appointment appointment = AppointmentMapper.INSTANCE.dtoToAppointment(appointmentDto);
 
         return AppointmentMapper.INSTANCE.appointmentToDto(this.appointmentRepository.save(appointment));
+    }
+
+    public void deleteUsers(String userId) {
+
+        List<Appointment> list = this.appointmentRepository.findByUserId(UUID.fromString(userId));
+
+        for(Appointment appointment : list){
+
+            this.appointmentRepository.delete(appointment);
+        }
+
+        System.out.println("All appointments with that id where deleted with success");
     }
 }

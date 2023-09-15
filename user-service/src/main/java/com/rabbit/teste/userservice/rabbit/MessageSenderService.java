@@ -1,5 +1,7 @@
 package com.rabbit.teste.userservice.rabbit;
 
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,10 @@ public class MessageSenderService {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendMessage(String message) {
-        rabbitTemplate.convertAndSend("user-service", message);
+    public void deleteUser(String message) {
+        MessageProperties properties = new MessageProperties();
+        properties.setHeader("MessageType", "delete-user");
+        Message msg = new Message(message.getBytes(), properties);
+        rabbitTemplate.send("appointment-service", msg);
     }
 }

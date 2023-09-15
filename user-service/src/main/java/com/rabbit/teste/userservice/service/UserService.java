@@ -28,7 +28,7 @@ public class UserService {
 
 
     public Page<UserDto> findAllUsers(Pageable pageable) {
-        messageSenderService.sendMessage("ss");
+
         return this.userRepository.findAll(pageable).map(UserMapper.INSTANCE::userToDto);
     }
 
@@ -51,5 +51,8 @@ public class UserService {
         }
 
         this.userRepository.deleteById(id);
+
+        System.out.println("Delete with success - now deleting appointments");
+        this.messageSenderService.deleteUser(String.valueOf(id));
     }
 }
