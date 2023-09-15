@@ -13,6 +13,6 @@ public class MyMessageSenderService {
     }
 
     public void sendMessage(String message) {
-        rabbitTemplate.convertAndSend("my-queue", message);
+        rabbitTemplate.convertAndSend("appointment-service", message);
     }
 }

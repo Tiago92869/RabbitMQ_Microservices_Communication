@@ -10,6 +10,6 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue myQueue() {
-        return new Queue("my-queue");
+        return new Queue("appointment-service");
     }
 }
